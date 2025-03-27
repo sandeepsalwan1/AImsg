@@ -5,11 +5,15 @@
  */
 
 // Check if we're in a build environment (typically Vercel build process)
+// export const isBuildTime = () => {
+//   // During build time, window is undefined
+//   return typeof window === 'undefined' && 
+//     // And we're in a production environment or specifically in a Vercel build
+//     (process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV);
+// };
+
 export const isBuildTime = () => {
-  // During build time, window is undefined
-  return typeof window === 'undefined' && 
-    // And we're in a production environment or specifically in a Vercel build
-    (process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV);
+  return process.env.VERCEL_BUILD === '1';  // Only true during build time
 };
 
 // This function returns either real data or mock data during build
